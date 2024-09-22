@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] GameObject enemyPrefab;
+    [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] float timeBetweenSpawns = 0.5f;
     float currentTimeBetweenSpawns;
 
@@ -48,7 +48,8 @@ public class EnemyManager : MonoBehaviour
     }
     void SpawnEnemy()
     {
-        var e = Instantiate(enemyPrefab, RandomPosition(), Quaternion.identity);
+        int randomIndex = Random.Range(0, enemyPrefabs.Length);
+        var e = Instantiate(enemyPrefabs[randomIndex], RandomPosition(), Quaternion.identity);
         e.transform.SetParent(enemiesParent);
     }
 
