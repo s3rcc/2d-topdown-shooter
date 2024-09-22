@@ -13,9 +13,11 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Debug.Log("PT collider trigger");
         var enemy = collision.gameObject.GetComponent<Enemy>();
         if(enemy != null)
         {
+            //Debug.Log("PT collider enemy");
             Destroy(gameObject);
             enemy.Hit(25);
         }
