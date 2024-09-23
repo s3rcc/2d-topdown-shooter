@@ -75,6 +75,7 @@ public class Enemy : MonoBehaviour
         }
 
         anim.SetTrigger("die");
+        GetComponent<LootBag>().InstantiateLoot(transform.position);
         Destroy(gameObject, 1f);
     }
 
