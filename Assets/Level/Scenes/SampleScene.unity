@@ -574,8 +574,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186b443b85afc934588b775a4880f7ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 4125608201249734694, guid: d9ee50e65f256cb419ba2920e55fc83f, type: 3}
-  timeBetweenSpawns: 0.5
+  enemyPrefabs:
+  - {fileID: 5914981063132628417, guid: ec6067b67dbe7b34bba8990dc4f7e460, type: 3}
+  - {fileID: 4125608201249734694, guid: d9ee50e65f256cb419ba2920e55fc83f, type: 3}
+  timeBetweenSpawns: 1
 --- !u!1 &1951590866
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,7 +855,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1524924792932166315, guid: f4d2d41181f328a4c9100debde9c31fa, type: 3}
       propertyPath: fireRate
-      value: 0.1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1524924792932166315, guid: f4d2d41181f328a4c9100debde9c31fa, type: 3}
       propertyPath: gunPivot
