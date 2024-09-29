@@ -67,7 +67,8 @@ public class Enemy : MonoBehaviour
         direction.Normalize();
             // Move the enemy towards the player
             transform.position += direction * speed * Time.deltaTime;
-            if (direction.x != 0)
+            if (direction.x != 0) 
+        {
                 spriteRenderer.flipX = direction.x < 0;
             anim.SetFloat("velocity", direction.magnitude);
         }
@@ -94,7 +95,6 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        // Keep the enemy on the same sorting layer during death animation
         spriteRenderer.sortingOrder = spriteRenderer.sortingOrder;
 
         // Disable collider to prevent interaction after death
@@ -115,14 +115,19 @@ public class Enemy : MonoBehaviour
 
         var expDrop = Instantiate(expPrefab, transform.position, Quaternion.identity);
 
-        expDrop.GetComponent<Exp>().Initialize(expAmount); ;
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sortingOrder = -1; // Set the sorting order to a low value to ensure it's behind other objects
+        }
+        else
+        {
+            Debug.LogError("No SpriteRenderer found on the EXP prefab.");
+        }
 
-        if (expDrop.GetComponent<Exp>() == null)
-            Debug.LogError($"Get Null Component");
+        expDrop.GetComponent<Exp>().Initialize(expAmount);
 
-        ExpManager.Instance.AddExp(expAmount); // Add EXP to the manager
+        ExpManager.Instance.AddExp(expAmount);
 
-        Debug.Log($"Dropped {expAmount} EXP.");
     }
 
     GameObject GetExpPrefabByAmount(int expAmount)
