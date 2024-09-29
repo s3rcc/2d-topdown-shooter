@@ -1,3 +1,5 @@
+using Assets.Code.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,8 +11,11 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 50;
     public int damage = 10;
     public float speed = 2f;
+    [SerializeField] GameObject exp1;
+    [SerializeField] GameObject exp2;
+    [SerializeField] GameObject exp3;
     
-    
+
 
     protected int currentHealth;
     protected SpriteRenderer spriteRenderer;
@@ -29,6 +34,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider2D = GetComponent<Collider2D>();
     }
+
 
     protected Transform FindPlayer()
     {
@@ -62,10 +68,12 @@ public class Enemy : MonoBehaviour
             // Move the enemy towards the player
             transform.position += direction * speed * Time.deltaTime;
             if (direction.x != 0)
-            {
                 spriteRenderer.flipX = direction.x < 0;
-            }
             anim.SetFloat("velocity", direction.magnitude);
+        }
+        else
+            anim.SetFloat("velocity", 0);
+
     }
 
 
@@ -77,9 +85,7 @@ public class Enemy : MonoBehaviour
         anim.SetTrigger("hit");
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
     
 
@@ -93,13 +99,40 @@ public class Enemy : MonoBehaviour
 
         // Disable collider to prevent interaction after death
         if (collider2D != null)
-        {
             collider2D.enabled = false;
-        }
 
         // Trigger death animation
         anim.SetTrigger("die");
+        DropExp(); // Drop EXP when the enemy dies
         Destroy(gameObject, 1f);
+    }
+
+    void DropExp()
+    {
+        int expAmount = Exp.GetExpDrop();
+
+        var expPrefab = GetExpPrefabByAmount(expAmount);
+
+        var expDrop = Instantiate(expPrefab, transform.position, Quaternion.identity);
+
+        expDrop.GetComponent<Exp>().Initialize(expAmount); ;
+
+        if (expDrop.GetComponent<Exp>() == null)
+            Debug.LogError($"Get Null Component");
+
+        ExpManager.Instance.AddExp(expAmount); // Add EXP to the manager
+
+        Debug.Log($"Dropped {expAmount} EXP.");
+    }
+
+    GameObject GetExpPrefabByAmount(int expAmount)
+    {
+        if (expAmount == 1)
+            return exp1;
+        else if (expAmount == 3)
+            return exp2;
+        else 
+            return exp3;
     }
 
     public bool IsDead()

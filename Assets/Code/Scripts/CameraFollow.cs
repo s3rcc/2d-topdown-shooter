@@ -9,8 +9,10 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (target == null)
+
+        if(target == null)
             return;
+
         Vector2 desPostion = (Vector2)target.position;
         Vector2 smoothedPosition = Vector3.Lerp((Vector2)transform.position, desPostion, smoothSpeed);
 

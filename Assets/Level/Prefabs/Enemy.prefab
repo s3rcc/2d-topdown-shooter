@@ -109,6 +109,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7027299708748837706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4125608201249734694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aab217da674bda42b31c40b3fadbb95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  speed: 2
+  exp1: {fileID: 2106223455565569785, guid: a9bb8e5a795a1cf43b10965ad378c34b, type: 3}
+  exp2: {fileID: 6901074613151273070, guid: cbfa882d882f7db41a2d4064e249f283, type: 3}
+  exp3: {fileID: 1241907619766426047, guid: 22185523d61a0cd46bcbc34bc3a5c6ed, type: 3}
+
 --- !u!50 &9042674574085632418
 Rigidbody2D:
   serializedVersion: 4
