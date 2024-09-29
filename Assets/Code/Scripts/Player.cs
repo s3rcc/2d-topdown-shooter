@@ -1,11 +1,14 @@
+using Assets.Code.Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] TextMeshProUGUI expText;
     [SerializeField] float moveSpeed = 6;
 
     Animator animator;
@@ -14,6 +17,9 @@ public class Player : MonoBehaviour
 
     int maxHealth = 100;
     int currentHealth;
+
+    int currentExp = 0;
+    int currentLevel = 1;
 
     public bool dead = false;
 
@@ -28,6 +34,8 @@ public class Player : MonoBehaviour
 
         currentHealth = maxHealth;
         healthText.text = maxHealth.ToString();
+
+        UpdateExpText();
     }
 
     private void Update()
@@ -46,11 +54,8 @@ public class Player : MonoBehaviour
 
         animator.SetFloat("velocity", movement.magnitude);
 
-        // Change player facing direction by fliping the x axis
-        if(movement.x != 0)
-        {
-                spriteRenderer.flipX = movement.x < 0;
-        }
+        if (movement.x != 0)
+            spriteRenderer.flipX = movement.x < 0;
     }
 
     private void FixedUpdate()
@@ -58,17 +63,7 @@ public class Player : MonoBehaviour
         rb.velocity = movement * moveSpeed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-
-        if (enemy != null)
-        {
-            Hit(20);
-        }
-    }
-
-    void Hit(int damage)
+    public void Hit(int damage)
     {
         if (dead) return;
         animator.SetTrigger("hit");
@@ -85,5 +80,32 @@ public class Player : MonoBehaviour
         dead = true;
         animator.SetTrigger("die");
         Destroy(gameObject, 2f);
+    }
+
+    public void CollectExp(int amount)
+    {
+        currentExp += amount;
+        CheckLevelUp();
+    }
+
+    void UpdateExpText()
+    {
+        expText.text = $"EXP: {currentExp}";
+    }
+
+    void CheckLevelUp()
+    {
+        int expRequired = currentLevel * 10;
+        if (currentExp >= expRequired)
+        {
+            currentLevel++;
+            currentExp = 0;
+            maxHealth += 1;
+            currentHealth +=1;
+            healthText.text = currentHealth.ToString();
+            Debug.Log($"Level up! New level: {currentLevel}");
+        }
+
+        UpdateExpText();
     }
 }
