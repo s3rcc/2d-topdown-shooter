@@ -151,6 +151,9 @@ MonoBehaviour:
   maxHealth: 50
   damage: 10
   speed: 2
+  exp1: {fileID: 2106223455565569785, guid: a9bb8e5a795a1cf43b10965ad378c34b, type: 3}
+  exp2: {fileID: 6901074613151273070, guid: cbfa882d882f7db41a2d4064e249f283, type: 3}
+  exp3: {fileID: 1241907619766426047, guid: 22185523d61a0cd46bcbc34bc3a5c6ed, type: 3}
   atkCooldown: 5
   atkRange: 20
   projectile: {fileID: 7946342316390152584, guid: 8ad75a75f1d7fa746a005edbd5541a9a, type: 3}

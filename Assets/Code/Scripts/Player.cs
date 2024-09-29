@@ -10,12 +10,12 @@ public class Player : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI expText;
     [SerializeField] float moveSpeed = 6;
+    [SerializeField] int maxHealth = 100;
 
     Animator animator;
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
 
-    int maxHealth = 100;
     int currentHealth;
 
     int currentExp = 0;
