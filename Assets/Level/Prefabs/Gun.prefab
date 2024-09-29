@@ -99,8 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzle: {fileID: 2952848015361044053, guid: 2a7c6c546a280f14bba9c272411daf3a, type: 3}
+  gunPivot: {fileID: 0}
   muzzlePosition: {fileID: 2965452062639977796}
-  projectile: {fileID: 0}
+  projectile: {fileID: 5544033252460403151, guid: 3cf5b8162cb2be34eb8dae44168bc908, type: 3}
   fireDistance: 10
   fireRate: 0.5
 --- !u!1 &7897613108714396685

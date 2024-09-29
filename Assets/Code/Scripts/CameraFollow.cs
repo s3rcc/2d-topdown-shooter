@@ -9,6 +9,7 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         if(target == null)
             return;
 
