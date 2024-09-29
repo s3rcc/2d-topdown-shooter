@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4346537734455586604}
   - component: {fileID: 5776023457177241704}
   - component: {fileID: 7433624772481449630}
+  - component: {fileID: -5728258726635734277}
+  - component: {fileID: -1429265504887055450}
   - component: {fileID: 7027299708748837706}
   - component: {fileID: 9042674574085632418}
   - component: {fileID: 2396421505221267368}
@@ -109,6 +111,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5728258726635734277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4125608201249734694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4cf1459e578bc44b4a284fc4a6ef50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootItem: {fileID: 11400000, guid: d3fba3d06e7dae44f8ba843cbdbdff80, type: 2}
+--- !u!114 &-1429265504887055450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4125608201249734694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f3b70d782b5de469c768b36b87e76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 2509254926650884894, guid: 00b181776e8f2f44eac507127c4ea002, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: d3fba3d06e7dae44f8ba843cbdbdff80, type: 2}
+  - {fileID: 11400000, guid: 84d5ef772d9334f40b73c0c3aefdde0a, type: 2}
 --- !u!114 &7027299708748837706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  damage: 10
   speed: 2
 --- !u!50 &9042674574085632418
 Rigidbody2D:

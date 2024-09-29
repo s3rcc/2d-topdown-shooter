@@ -81,7 +81,6 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-    
 
     protected virtual void Die()
     {
@@ -97,9 +96,9 @@ public class Enemy : MonoBehaviour
             collider2D.enabled = false;
         }
 
-        // Trigger death animation
+        GetComponent<LootBag>().InstantiateLoot(transform.position); // R?i loot
+                                                                     // Trigger death animation
         anim.SetTrigger("die");
-        GetComponent<LootBag>().InstantiateLoot(transform.position);
         Destroy(gameObject, 1f);
     }
 

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootSprite: {fileID: 1429147552, guid: 1c989fff4cea3a24392c3bbd0c1c9c2f, type: 3}
   lootName: FirstAidKit
-  dropChance: 10
+  dropChance: 100
