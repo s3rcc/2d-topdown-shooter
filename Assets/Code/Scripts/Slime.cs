@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
-    public float atkCooldown = 5f; 
+    public float atkCooldown = 5f;
     public float atkRange = 5f;
     public GameObject projectile;
-    public int numberOfProjectiles = 6; 
+    public int numberOfProjectiles = 6;
     public float projectileSpeed = 5f;
 
     private bool isAttack = false;
     private bool isJumping = false;
 
+    private Coroutine attackCycleCoroutine; // Store the coroutine reference
+
     protected override void Start()
     {
         base.Start();
-        StartCoroutine(JumpAttackCycle()); // Start the cycle for jump attacks
+        attackCycleCoroutine = StartCoroutine(JumpAttackCycle()); // Start the cycle for jump attacks
     }
 
     protected override void Update()
@@ -34,7 +36,7 @@ public class Slime : Enemy
     {
         while (!isDead)
         {
-            yield return new WaitForSeconds(atkCooldown); // Wait for the cooldown
+            yield return new WaitForSeconds(atkCooldown);
 
             if (target != null && Vector3.Distance(transform.position, target.position) <= atkRange && !isAttack)
             {
@@ -45,9 +47,11 @@ public class Slime : Enemy
 
     private IEnumerator JumpAttack()
     {
+        if (isDead) yield break; // Prevent the jump attack if the slime is dead
+
         isAttack = true;
-        isJumping = true;  // Stop normal movement during jump attack
-        anim.SetTrigger("attack"); // Trigger the jump attack animation
+        isJumping = true;
+        anim.SetTrigger("attack");
 
         yield return new WaitForSeconds(0.5f);
 
@@ -58,6 +62,8 @@ public class Slime : Enemy
 
     private void Shoot()
     {
+        if (isDead) return; // Prevent shooting if the slime is dead
+
         float angleStep = 360f / numberOfProjectiles;
         float angle = 0f;
 
@@ -77,10 +83,20 @@ public class Slime : Enemy
             GameObject proj = Instantiate(projectile, transform.position, Quaternion.Euler(0, 0, projectileRotation));
             proj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileMoveDir.x, projectileMoveDir.y) * projectileSpeed;
 
-            Destroy(proj, 3);
+            Destroy(proj, 3); // Destroy projectile after 3 seconds
 
             angle += angleStep; // Increment the angle for the next projectile
+        }
+    }
 
+    protected override void Die()
+    {
+        base.Die();
+        if (attackCycleCoroutine != null) // Stop the attack cycle coroutine when the slime dies
+        {
+            StopCoroutine(attackCycleCoroutine);
         }
     }
 }
+
+

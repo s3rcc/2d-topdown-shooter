@@ -124,6 +124,13 @@ MonoBehaviour:
   maxHealth: 50
   damage: 10
   speed: 2
+  exp1: {fileID: 2106223455565569785, guid: a9bb8e5a795a1cf43b10965ad378c34b, type: 3}
+  exp2: {fileID: 6901074613151273070, guid: cbfa882d882f7db41a2d4064e249f283, type: 3}
+  exp3: {fileID: 1241907619766426047, guid: 22185523d61a0cd46bcbc34bc3a5c6ed, type: 3}
+  acceleration: 0.1
+  maxSpeed: 4
+  biteDamage: 20
+  slowDownFactor: 0.5
   biteDuration: 0.5
 --- !u!61 &8409518861196164498
 BoxCollider2D:
