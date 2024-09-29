@@ -63,6 +63,19 @@ public class Player : MonoBehaviour
         rb.velocity = movement * moveSpeed;
     }
 
+<<<<<<< Updated upstream
+=======
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+
+        if (enemy != null)
+        {
+            Hit(20);
+        }
+    }
+
+>>>>>>> Stashed changes
     public void Hit(int damage)
     {
         if (dead) return;
