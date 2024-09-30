@@ -53,6 +53,7 @@ public class LootManager : MonoBehaviour
 
         // Store reference to the loot icon UI
         lootIconUI[lootItem.lootName] = newLootIcon;
+        UpdateLootUI(lootItem.lootName);
     }
 
     private void UpdateLootUI(string lootName)
