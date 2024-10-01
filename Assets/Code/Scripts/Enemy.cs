@@ -88,7 +88,6 @@ public class Enemy : MonoBehaviour
         if (currentHealth <= 0)
             Die();
     }
-    
 
     protected virtual void Die()
     {
@@ -101,7 +100,8 @@ public class Enemy : MonoBehaviour
         if (collider2D != null)
             collider2D.enabled = false;
 
-        // Trigger death animation
+        GetComponent<LootBag>().InstantiateLoot(transform.position); // R?i loot
+                                                                     // Trigger death animation
         anim.SetTrigger("die");
         DropExp(); // Drop EXP when the enemy dies
         Destroy(gameObject, 1f);

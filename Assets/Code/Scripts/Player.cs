@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
-
+    
     int currentHealth;
 
     int currentExp = 0;
@@ -56,6 +56,20 @@ public class Player : MonoBehaviour
 
         if (movement.x != 0)
             spriteRenderer.flipX = movement.x < 0;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        // Kiểm tra xem đối tượng va chạm có phải là một vật phẩm có thể thu thập không
+        CollectibleItem collectibleItem = collider.GetComponent<CollectibleItem>();
+        if (collectibleItem != null)
+        {
+            // Thêm vật phẩm thu được vào LootManager
+            LootManager.Instance.CollectLoot(collectibleItem.lootItem);
+
+            // Hủy vật phẩm có thể thu thập sau khi thu thập
+            Destroy(collider.gameObject);
+        }
     }
 
     private void FixedUpdate()
