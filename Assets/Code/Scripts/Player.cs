@@ -5,7 +5,7 @@ using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Singleton<Player>
 {
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI expText;
@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
-
     int currentHealth;
 
     int currentExp = 0;
@@ -26,14 +25,14 @@ public class Player : MonoBehaviour
     float moveHorizontal, moveVertical;
     Vector2 movement;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        currentHealth = maxHealth;
-        healthText.text = maxHealth.ToString();
+        currentHealth = 69;
+        healthText.text = currentHealth.ToString();
 
         UpdateExpText();
     }
@@ -46,12 +45,11 @@ public class Player : MonoBehaviour
             animator.SetFloat("velocity", 0);
             return;
         }
-
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         moveVertical = Input.GetAxisRaw("Vertical");
 
         movement = new Vector2(moveHorizontal, moveVertical).normalized;
-
+   
         animator.SetFloat("velocity", movement.magnitude);
 
         if (movement.x != 0)

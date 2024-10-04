@@ -706,11 +706,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 65ef0a00-c863-4a81-ab7c-ae634ab04f3a
+  cloudProjectId: 684a4880-973b-4f69-b263-2e471b1ca9b3
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: test shooter
-  organizationId: unity_af3a62fbd1f792f5b73e
+  projectName: TopFight
+  organizationId: phutg2000
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

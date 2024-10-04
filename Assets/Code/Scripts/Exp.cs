@@ -34,7 +34,7 @@ namespace Assets.Code.Scripts
             {
                 player.CollectExp(this.Amount);
                 Destroy(gameObject);
-            }   
+            }
         }
     }
 
